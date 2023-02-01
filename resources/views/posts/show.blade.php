@@ -13,7 +13,7 @@
             <div class="card" >
                 <div class="card-body">
                     <h2 class="card-title">{{ $posts->titulo }}</h2>
-                    <h6 class="card-subtitle mb-2 text-muted">Escrito por {{ $posts->usuario->login }} el {{ $posts->created_at }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Escrito por {{ $posts->usuario->login }} el {{ $posts->created_at->format('d/m/Y') }}</h6>
                     <p class="card-text">{{ $posts->contenido }}</p>
 
                     <div>
