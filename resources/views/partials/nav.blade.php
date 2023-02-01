@@ -11,9 +11,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('posts.index') }}">Listado de Posts</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('posts.create') }}">Añadir Post</a>
-      </li>
+
     </ul>
   </div>
 </nav>
