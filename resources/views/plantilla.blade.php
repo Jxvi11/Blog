@@ -15,7 +15,7 @@
 
     <div class="card-body d-flex justify-content-between align-items-right">
         <p><p>
-        <p>{{ fechaActual('2023/01/17') }}</p>
+        <p>{{ fechaActual('2023/02/06') }}</p>
     </div>
 
     @yield('contenido')

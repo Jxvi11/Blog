@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Comentario;
+use App\Http\Requests\PostRequest;
 
 use App\Http\Controllers\Usuario;
 
@@ -30,14 +31,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //return redirect()->route('inicio');
-
-        $posts = new Post();
-        $posts->titulo = 'titulo'.rand();
-        $posts->contenido = 'contenido'.rand();
-        $posts->save();
-        return redirect()->route('posts.index');
-
+        return view('posts.create');
     }
 
 
@@ -47,9 +41,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
 
+
+        $posts = new Post();
+        $posts->titulo = $request->get('titulo');
+        $posts->contenido = $request->get('contenido');
+        $posts->usuario_id = $request->get('usuario');
+        $posts->save();
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -74,17 +75,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //return "Edición de Posts con id:  $id";
-       // return redirect()->route('inicio');
-        try{
-            $posts = Post::findOrFail($id);
-            $posts->titulo = 'titulo'.rand();
-            $posts->contenido = 'contenido'.rand();
-            $posts->save();
+        $posts = Post::findOrFail($id);
+        return view('posts.edit', compact('posts'));
 
-            return redirect()->route('posts.index');
-
-        }catch(Illuminate\Database\QueryException $e) { }
     }
 
     /**
@@ -94,9 +87,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
+        try{
+            $posts = Post::findOrFail($id);
+            $posts->titulo = $request->input('titulo');
+            $posts->contenido = $request->input('contenido');
+            $posts->usuario_id = $request->input('usuario');
+            $posts->save();
 
+            return redirect()->route('posts.index');
+
+        }catch(Illuminate\Database\QueryException $e) { }
     }
 
     /**
@@ -109,6 +111,7 @@ class PostController extends Controller
     {
         try{
             $posts = Post::findOrFail($id)->delete();
+            $comentarios = Comentario::where('post_id', $id)->delete();
             return redirect()->route('posts.index');
 
         }catch(Illuminate\Database\QueryException $e) { }

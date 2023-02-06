@@ -1,9 +1,0 @@
- Domain | Method   | URI                 | Name         | Action                                                     | Middleware                               |                           
-+--------+----------+---------------------+--------------+------------------------------------------------------------+------------------------------------------+                           
-|        | GET|HEAD | /                   | inicio       | Closure                                                    | web                                      |                           
-|        | GET|HEAD | api/user            |              | Closure                                                    | api                                      |                           
-|        |          |                     |              |                                                            | App\Http\Middleware\Authenticate:sanctum |                           
-|        | GET|HEAD | posts               | posts.index  | App\Http\Controllers\PostController@index                  | web                                      |                           
-|        | GET|HEAD | posts/crear         | posts.create | App\Http\Controllers\PostController@create                 | web                                      |                           
-|        | GET|HEAD | posts/{post}        | posts.show   | App\Http\Controllers\PostController@show                   | web                                      |                           
-|        | GET|HEAD | posts/{post}/editar | posts.edit   | App\Http\Controllers\PostController@edit                   | web

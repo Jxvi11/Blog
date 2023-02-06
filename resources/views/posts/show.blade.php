@@ -7,8 +7,9 @@
 
     <div class="container">
 
-        <form method="POST" action="#" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('posts.destroy', $posts->id) }}" enctype="multipart/form-data">
             @csrf
+            @method('DELETE')
 
             <div class="card" >
                 <div class="card-body">
@@ -34,6 +35,8 @@
                         <div class="form-group label-floating">
                             <br>
                             <a href="{{ route('posts.index') }}" class="btn btn-danger">Atrás</a>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+
                         </div>
                     </div>
                 </div>

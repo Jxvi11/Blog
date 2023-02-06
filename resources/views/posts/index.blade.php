@@ -13,8 +13,9 @@
                     <th>ID</th>
                     <th>Titulo</th>
                     <th>Ver</th>
-                    <th>Eliminar</th>
                     <th>Editar</th>
+                    <th>Eliminar</th>
+
 
                 </tr>
               </thead>
@@ -26,6 +27,9 @@
                             <td>{{ $p->titulo }} ({{ $p->usuario->login }})</td>
                             <td>
                                 <a href="{{ route('posts.show',$p->id) }}" method="GET" class="btn btn-success btn-sm">Ver</a>
+                            </td>
+                            <td>
+                                <a href="{{ route('posts.edit',$p->id) }}" m method="GET" class="btn btn-info btn-sm">Editar</a>
                             </td>
                             <td>
                                 <form id="delete-form-{{ $p->id }}" action="{{ route('posts.destroy',$p->id) }}" style="display: none;" method="POST">
@@ -40,9 +44,7 @@
                                 }">Eliminar
                                 </form>
                             </td>
-                            <td>
-                                <a href="{{ route('posts.edit',$p->id) }}" m method="GET" class="btn btn-info btn-sm">Editar</a>
-                            </td>
+
                         </tr>
                     @endforeach
 
